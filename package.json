@@ -1,0 +1,19 @@
+{
+  "name": "easy-billing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashwini-cs/easy-billing.git"
+  },
+  "author": "ashwini",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ashwini-cs/easy-billing/issues"
+  },
+  "homepage": "https://github.com/ashwini-cs/easy-billing#readme"
+}

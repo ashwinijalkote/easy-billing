@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "live-server ./build",
+    "start": "http-server ./build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "server": "node ./src/api/server.js"
@@ -31,6 +31,11 @@
   "dependencies": {
     "@babel/core": "^7.2.2",
     "express": "^4.16.4",
-    "live-server": "^1.2.1"
+    "http-server": "^0.11.1",
+    "live-server": "^1.2.1",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1"
   }
 }

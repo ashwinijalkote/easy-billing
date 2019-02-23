@@ -5,7 +5,7 @@ module.exports = {
     mode: 'development',
     output: {
         path: path.resolve(__dirname, './build'),
-        filename: 'bundle.js'
+        filename: 'app.js'
     },
     module: {
         rules: [
@@ -26,7 +26,7 @@ module.exports = {
                 use: [
                     {
                         loader: 'file-loader',
-                        options: {name:'./index.html'}
+                        options: {name:'./404.html'}
                     }
                 ]
             }

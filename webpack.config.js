@@ -1,11 +1,11 @@
 const path = require('path');
 
 module.exports = {
-    entry: './src/app.js',
+    entry: './src/ui/app.js',
     mode: 'development',
     output: {
         path: path.resolve(__dirname, './build'),
-        filename: 'app.js'
+        filename: './app.js'
     },
     module: {
         rules: [
@@ -19,6 +19,12 @@ module.exports = {
                             presets: ["@babel/preset-react"]
                         }
                     }
+                ]
+            },
+            {
+                test: /\.css/,
+                use: [
+                    {loader: 'file-loader', options: {name: './css/[name].css'}}
                 ]
             },
             {

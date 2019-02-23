@@ -6,7 +6,7 @@
   "scripts": {
     "start": "http-server ./build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
+    "build": "rm -rf ./build/* && webpack",
     "server": "node ./src/api/server.js"
   },
   "repository": {
@@ -33,6 +33,7 @@
     "express": "^4.16.4",
     "http-server": "^0.11.1",
     "live-server": "^1.2.1",
+    "mdbreact": "^4.11.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-router": "^4.3.1",

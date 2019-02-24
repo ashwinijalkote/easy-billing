@@ -6,17 +6,25 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
 
-import SignUp from "./pages/signup";
+import SignUp from "./pages/signin";
+import {applyMiddleware, createStore} from "redux";
+import User from "./reducers/user";
+import {Provider} from "react-redux";
+import thunk from "redux-thunk";
+
+window.APP = createStore(User, {user: {username: null}}, applyMiddleware(thunk));
 
 
 const App = (props) => {
     return <React.Fragment>
-        <Router>
-            <div id="div 1">
-                <Link to="/signup">Sign Up</Link>
-                <Route path='/signup' component={SignUp}/>
-            </div>
-        </Router>
+        <Provider store={window.APP}>
+            <Router>
+                <div id="div 1">
+                    <Link to="/signup">Sign Up</Link>
+                    <Route path='/signup' component={SignUp}/>
+                </div>
+            </Router>
+        </Provider>
     </React.Fragment>
 }
 

@@ -35,6 +35,8 @@ class Signin extends React.Component {
                     <MDBCol size="12">
                         <MDBBtn color="success" onClick={this.props.signin(this.state)}>Submit</MDBBtn>
                     </MDBCol>
+                    <p>{this.props.username}</p>
+
                 </MDBRow>
             </MDBContainer>
         )
@@ -43,8 +45,24 @@ class Signin extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signin:(state)=>(e)=> dispatch({type: "USER_SIGNIN", name: state.username})
-
+        signin:(state)=>(e)=>{
+            dispatch(dispatch=>{
+                fetch("https://us-central1-gourav-cloud.cloudfunctions.net/user-profile", {
+                        mode: "cors",
+                        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+                        headers: {
+                        "Content-Type": "application/json",
+                    },})
+                    .then(res => res.json()).then(data => {
+                        dispatch({type: "USER_SIGNIN", ...data});
+                })
+            })
+        }
     }
 }
-export default connect(null, mapDispatchToProps)(Signin);
+
+const mapStateToProps = (state) => {
+    return state.user
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signin);

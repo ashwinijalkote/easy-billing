@@ -3,11 +3,12 @@
 export default function (state = {}, action) {
 
     let newState = null;
-    if (action.type === "USER_SIGNIN") {
+    let {type, ...data} = action
+    if (type === "USER_SIGNIN") {
         newState = {
             ...state,
             user: {
-                username: action.name,
+                ...data
             }
         };
         return newState;

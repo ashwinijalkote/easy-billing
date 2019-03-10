@@ -21,7 +21,7 @@ router.post('/', function(req, res) {
             var data = await u.save();
             res.json(data)
         }catch (e) {
-            res.json(e.errmsg)
+            res.status(400).json(e.errmsg)
         }
     }
     saveAndRespond()

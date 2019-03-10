@@ -6,7 +6,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
 
-import SignUp from "./pages/signin";
+import SignUp from "./pages/signup";
 import Login from "./pages/login";
 import {applyMiddleware, createStore} from "redux";
 import User from "./reducers/user";

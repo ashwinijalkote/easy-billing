@@ -2,8 +2,9 @@ import React from "react";
 import {MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput} from "mdbreact";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import axios from "axios";
 
-class Signin extends React.Component {
+class Signup extends React.Component {
 
     constructor(props) {
         super(props);
@@ -45,22 +46,17 @@ class Signin extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signup:(state, history)=>(e)=>{
-            dispatch(dispatch=>{
-                fetch("http://localhost:3000/users", {
-                        method: "post",
-                        mode: "cors",
-                        cache: "no-cache",
-                        headers: {
-                        "Content-Type": "application/json",
-                        },
-                        body:  JSON.stringify({
-                            username: state.username,
-                            password: state.password
-                        })
-                }).then(res => res.json()).then(data => {
-                        dispatch({type: "USER_SIGNUP", ...data});
-                        history.push("/login");
+        signup: (state, history) => (e) => {
+            dispatch(dispatch => {
+                axios.post("http://localhost:3000/users", {
+                    username: state.username,
+                    password: state.password
+                }).then(res => {
+                    dispatch({type: "USER_SIGNUP", ...res});
+                    history.push("/login");
+
+                }).catch(res => {
+                    console.log("error" + res.data);
                 })
             })
         }
@@ -71,4 +67,4 @@ const mapStateToProps = (state) => {
     return state.user
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Signin));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Signup));

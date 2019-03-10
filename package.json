@@ -7,7 +7,7 @@
     "start": "http-server ./build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf ./build/* && webpack",
-    "server": "node ./src/api/server.js"
+    "server": "node --inspect ./src/api/server.js"
   },
   "repository": {
     "type": "git",
@@ -34,6 +34,7 @@
     "http-server": "^0.11.1",
     "live-server": "^1.2.1",
     "mdbreact": "^4.11.0",
+    "mongoose": "^5.4.18",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-redux": "^6.0.1",

@@ -1,6 +1,7 @@
 import React from "react";
 import {MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput} from "mdbreact";
 import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 class Signin extends React.Component {
 
@@ -18,6 +19,7 @@ class Signin extends React.Component {
         this.setState(state);
     }
 
+
     render() {
         return (
             <MDBContainer>
@@ -33,10 +35,8 @@ class Signin extends React.Component {
                 </MDBRow>
                 <MDBRow>
                     <MDBCol size="12">
-                        <MDBBtn color="success" onClick={this.props.signin(this.state)}>Submit</MDBBtn>
+                        <MDBBtn color="success" onClick={this.props.signup(this.state, this.props.history)}>Submit</MDBBtn>
                     </MDBCol>
-                    <p>{this.props.username}</p>
-
                 </MDBRow>
             </MDBContainer>
         )
@@ -45,16 +45,22 @@ class Signin extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signin:(state)=>(e)=>{
+        signup:(state, history)=>(e)=>{
             dispatch(dispatch=>{
-                fetch("https://us-central1-gourav-cloud.cloudfunctions.net/user-profile", {
+                fetch("http://localhost:3000/users", {
+                        method: "post",
                         mode: "cors",
-                        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+                        cache: "no-cache",
                         headers: {
                         "Content-Type": "application/json",
-                    },})
-                    .then(res => res.json()).then(data => {
-                        dispatch({type: "USER_SIGNIN", ...data});
+                        },
+                        body:  JSON.stringify({
+                            username: state.username,
+                            password: state.password
+                        })
+                }).then(res => res.json()).then(data => {
+                        dispatch({type: "USER_SIGNUP", ...data});
+                        history.push("/login");
                 })
             })
         }
@@ -65,4 +71,4 @@ const mapStateToProps = (state) => {
     return state.user
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signin);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Signin));

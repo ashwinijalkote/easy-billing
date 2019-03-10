@@ -4,7 +4,7 @@ export default function (state = {}, action) {
 
     let newState = null;
     let {type, ...data} = action
-    if (type === "USER_SIGNIN") {
+    if (type === "USER_SIGNUP") {
         newState = {
             ...state,
             user: {

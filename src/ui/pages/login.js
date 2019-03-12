@@ -66,7 +66,4 @@ const mapStateToProps = (state) => {
     return state.user
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Signup));
-
-
-export default Login;
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
